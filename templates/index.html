@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Car Control</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bashar.css') }}">
+</head>
+
+<body>
+
+    <h1>Robot Car Control Panel</h1>
+
+    <div class="container">
+        <div class="sensor">
+            <h2>Sensor 1</h2>
+            <p>Data: <span id="sensor1-data">0</span></p>
+        </div>
+        <div class="sensor">
+            <h2>Sensor 2</h2>
+            <p>Data: <span id="sensor2-data">0</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="video">
+            <h2>Video</h2>
+            <img id="video1" src="{{ url_for('video_feed') }}" width="100%">
+            Your browser does not support the video tag.
+            </img>
+        </div>
+        <div class="control">
+            <h2>Control Buttons</h2>
+            <div class="control-buttons">
+                <button class="up" onclick="move('forward')">&#9650;</button>
+                <div>
+                    <button class="left" onclick="move('left')">&#9664;</button>
+                    <button class="right" onclick="move('right')">&#9654;</button>
+                </div>
+                <button class="down" onclick="move('backward')">&#9660;</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="demo">All Rights Reserved By Ahmed, Fatma And Houssam</p>
+    </footer>
+
+    <script>
+        function move(direction) {
+            console.log('Moving', direction);
+        }
+
+        function updateSensorData(sensorId, data) {
+            document.getElementById(sensorId).innerText = data;
+        }
+
+        setInterval(() => {
+            updateSensorData('sensor1-data', Math.random().toFixed(2));
+            updateSensorData('sensor2-data', Math.random().toFixed(2));
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
